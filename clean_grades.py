@@ -17,7 +17,7 @@ f.close()
 # "Switch" statement to take action on type of assignment
 
 
-
+'''
 def error_print():
         print "This assignment was not found."
         return
@@ -42,19 +42,31 @@ def switch(assignment):
             'Quiz 9': quiz(),
             'Quiz 10': quiz(),
         }.get(assignment, error_print())
-
+'''
+#  a new dictionary for grades, will be a dictionary keyed by student id.  
+#  each value in this dictionary will hold another dictionary for the specific grades.
+d_grades = dict()
 
 length = len(grades)    # 11,101 rows in grades
 count = 0
 
-for row in range(0, 25):
-        row_assignment = str(grades[row][1])
-        print "Count: ", count
+for row in range(1, length):        # skip first row, header.
+        student_id = str(grades[row][0])
+        #print "Count: ", count
         count += 1
+        # add student to d_grades dictionary
+        d_grades[student_id] = count
+
+print d_grades['757']
+print "length of dictionary: ", len(d_grades)
+
+
+
+'''
         #print switch(row_assignment)
         if "Quiz" in row_assignment:
             if "Attendance" in row_assignment:
                 print "attendance quiz"
             else:
                 print "recitation quiz"
-                                        
+'''                                     
