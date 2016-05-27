@@ -52,13 +52,25 @@ dict_len_original = len(d_grades)
 # Removing the entries that are not complete.  Not sure why there are ids with only a couple grades
 key_list = []
 
+# find dictionary entries that have less than 5 grades
 for key in d_grades:
     if len(d_grades[key]) < 10:
         key_list.append(key)
 
+# remove the entries in dict that have less than 5 grades
 for k in key_list:
     del d_grades[k]
 
 print "start: ", dict_len_original, " end: ", len(d_grades)
 
+# lazy approach to remove the duplicate 1 & 2 elements
+for k in d_grades:
+    entry = d_grades[k]
+    # recall 2 elements equals an entry
+    first, second = entry[0], entry[2]
+    if first == second:
+        # remove first entry
+        entry = entry[2:]
+        d_grades[k] = entry
 
+print d_grades['744']
