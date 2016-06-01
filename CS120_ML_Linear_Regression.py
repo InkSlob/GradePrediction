@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import datasets, linear_model
 from sklearn.cross_validation import train_test_split
+from sklearn.metrics import r2_score
 
 # Structure of ML data:
 #  0	1	 2	  3	   4	5	 6	  7	   8	9					   
@@ -16,6 +17,8 @@ from sklearn.cross_validation import train_test_split
 #  A1 Final | A2 Final | A3 Final | Exam 1 | Exam 2
 Corpus = open('CS120_ML_data.p', 'rb') 
 corpus = pickle.load(Corpus)
+
+print "head: ", corpus.head()
 
 five_week_df = corpus.loc[:, ['Q1', 'Q2', 'AQ1', 'AQ2', 'A1 Final']]
 X = five_week_df.as_matrix()
@@ -50,3 +53,5 @@ print("Residual sum of squares: %.2f"% RMSE)
 var = regr.score(corpus_x_test, shelf_y_test)
 print('Variance score: %.2f'% var)
 print "__________________________________________________________________________________________________________\n"
+
+print "r2 score: ", r2_score(shelf_y_test, pred)
