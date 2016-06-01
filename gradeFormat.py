@@ -1,5 +1,8 @@
 import csv
 import numpy as np
+from pandas import Series, DataFrame
+import pandas as pd
+import pickle
 
 # make a grade container: reader is list, row is list
 grades = []
@@ -89,11 +92,21 @@ for line in grades:
 
 	df_grade.append(line_grade)
 
-	
-list_a = []
-for x in df_grade:
-	list_a.append(len(x))
+df = pd.DataFrame(df_grade, columns = ['Q1', 'Q2',  'Q3',  'Q4',  'Q5',  'Q6',  'Q7',  \
+	'Q8',  'Q9',  'Q10', 'AQ1', 'AQ2',  'AQ3',  'AQ4',  'AQ5',  'AQ6',  'AQ7',  'AQ8', \
+	'AQ9',  'AQ10', 'A1 Final',  'A2 Final',  'A3 Final',  'Exam 1',  'Exam 2'])
 
-print list_a
+df['Q_Total']=(df['Q1']+df['Q2']+df['Q3']+df['Q4']+df['Q5']+df['Q6']+df['Q7']+df['Q8']+\
+			   df['Q9']+df['Q10'])/10
+df['AQ_Total']=(df['AQ1']+df['AQ2']+df['AQ3']+df['AQ4']+df['AQ5']+df['AQ6']+df['AQ7']+\
+				df['AQ8']+df['AQ9']+df['AQ10'])/10
+df['Final_Grade']=df['Q_Total']*0.15+df['AQ_Total']*0.05+df['A1 Final']*0.1+\
+				  df['A2 Final']*0.15+df['A3 Final']*0.25+df['Exam 1']*0.15+\
+				  df['Exam 2']*0.15
 
-print df_grade[0]
+print df.head(5)
+
+# dump this dataframe (df) to a pickle file for later use
+f = open('CS120_ML_data.p', 'wb')
+pickle.dump(df, f)
+f.close()
