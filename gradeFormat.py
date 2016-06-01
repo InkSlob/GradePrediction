@@ -104,6 +104,45 @@ df['Final_Grade']=df['Q_Total']*0.15+df['AQ_Total']*0.05+df['A1 Final']*0.1+\
 				  df['A2 Final']*0.15+df['A3 Final']*0.25+df['Exam 1']*0.15+\
 				  df['Exam 2']*0.15
 
+# Letter grade function
+
+def letter_grade(score):
+	score = float(score)
+	if score >= 0.93:
+		g = str('A')
+		return g
+	if score >= 0.90 and score < 0.93:
+		g = str('A-')
+		return g
+	if score >= 0.88 and score < 0.90:
+		g = str('B+')
+		return g
+	if score >= 0.82 and score < 0.88:
+		g = str('B')
+		return g
+	if score >= 0.80 and score < 0.82:
+		g = str('B-')
+		return g
+	if score >= 0.78 and score < 0.80:
+		g = str('C+')
+		return g
+	if score >= 0.70 and score < 0.78:
+		g = str('C')
+		return g
+	if score >= 0.68 and score < 0.70:
+		g = str('C-')
+		return g
+	if score >= 0.60 and score < 0.68:
+		g = str('D')
+		return g
+	if score < 0.60:
+		g = str('F')
+		return g
+
+# copy final grade to letter grade
+df['Letter_Grade']=df['Final_Grade']
+df['Letter_Grade']=df['Letter_Grade'].apply(letter_grade)
+
 print df.head(5)
 
 # dump this dataframe (df) to a pickle file for later use
