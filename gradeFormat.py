@@ -109,34 +109,44 @@ df['Final_Grade']=df['Q_Total']*0.15+df['AQ_Total']*0.05+df['A1 Final']*0.1+\
 def letter_grade(score):
 	score = float(score)
 	if score >= 0.93:
-		g = str('A')
+		#g = str('A')
+		g = 100
 		return g
 	if score >= 0.90 and score < 0.93:
-		g = str('A-')
+		#g = str('A-')
+		g = 93
 		return g
 	if score >= 0.88 and score < 0.90:
-		g = str('B+')
+		#g = str('B+')
+		g = 90
 		return g
 	if score >= 0.82 and score < 0.88:
-		g = str('B')
+		#g = str('B')
+		g = 88
 		return g
 	if score >= 0.80 and score < 0.82:
-		g = str('B-')
+		#g = str('B-')
+		g = 82
 		return g
 	if score >= 0.78 and score < 0.80:
-		g = str('C+')
+		#g = str('C+')
+		g = 80
 		return g
 	if score >= 0.70 and score < 0.78:
-		g = str('C')
+		#g = str('C')
+		g = 78
 		return g
 	if score >= 0.68 and score < 0.70:
-		g = str('C-')
+		#g = str('C-')
+		g = 70
 		return g
 	if score >= 0.60 and score < 0.68:
-		g = str('D')
+		#g = str('D')
+		g = 68
 		return g
 	if score < 0.60:
-		g = str('F')
+		#g = str('F')
+		g = 60
 		return g
 
 # copy final grade to letter grade
